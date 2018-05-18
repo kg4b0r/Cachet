@@ -16,12 +16,26 @@ return [
 
     // Incidents
     'incidents' => [
-        'title'                    => 'Hændelser &amp; Planlagte',
+        'title'                    => 'Hændelser og Vedligehold',
         'incidents'                => 'Incidents',
-        'logged'                   => '{0} Ingen åbne hændelser.|Der er en åben hændelse.|Der er <strong>:count</strong> åbne hændelser.',
+        'logged'                   => '{0}There are no incidents, good work.|[1]You have logged one incident.|[2,*]You have reported <strong>:count</strong> incidents.',
         'incident-create-template' => 'Create Template',
         'incident-templates'       => 'Incident Templates',
-        'updates'                  => '{0} Nul opdateringer | Én opdatering |:count opdateringer',
+        'updates'                  => [
+            'title'   => 'Hændelsesopdateringer til :hændelse',
+            'count'   => '{0}Zero Updates|[1]One Update|[2]Two Updates|[3,*]Several Updates',
+            'add'     => [
+                'title'   => 'Opret ny hændelsesopdatering',
+                'success' => 'Din nye hændelsesopdatering er oprettet.',
+                'failure' => 'En fejl opstod med hændelsesopdateringen.',
+            ],
+            'edit' => [
+                'title'   => 'Redigér hændelsesopdatering',
+                'success' => 'Hændelsesopdateringen er blevet opdateret.',
+                'failure' => 'En fejl opstod under opdateringen af hændelsesopdateringen',
+            ],
+        ],
+        'reported_by'              => 'Anmeldt af bruger',
         'add'                      => [
             'title'   => 'Opret hændelse',
             'success' => 'Hændelse tilføjet.',
@@ -35,11 +49,6 @@ return [
         'delete' => [
             'success' => 'Hændelsen er blevet slettet og vil ikke blive vist på din statusside.',
             'failure' => 'Hændelsen kunne ikke slettes. Prøv venligst igen.',
-        ],
-        'update' => [
-            'title'    => 'Opret ny hændelsesopdatering',
-            'subtitle' => 'Tilføj en opdatering til <strong>:incident</strong>',
-            'success'  => 'Update added.',
         ],
 
         // Incident templates
@@ -65,8 +74,8 @@ return [
 
     // Incident Maintenance
     'schedule' => [
-        'schedule'     => 'Planlagt vedligeholdelse',
-        'logged'       => '{0} Der er intet planlagt.|Der er 1 planlagt.|Der er <strong>:count</strong> planlagte.',
+        'schedule'     => 'Vedligeholdelse',
+        'logged'       => '{0}There has been no Maintenance, good work.|[1]You have logged one schedule.|[2,*]You have reported <strong>:count</strong> schedules.',
         'scheduled_at' => 'Planlagt til :timestamp',
         'add'          => [
             'title'   => 'Tilføj planlagt vedligeholdelse',
@@ -147,13 +156,15 @@ return [
     ],
     // Subscribers
     'subscribers' => [
-        'subscribers'      => 'Subscribers',
-        'description'      => 'Abonnenter vil modtage notifikationer når hændelser oprettes eller komponenter opdateres.',
-        'verified'         => 'Bekræftet',
-        'not_verified'     => 'Ej bekræftet',
-        'subscriber'       => ':email, abonnerede :date',
-        'no_subscriptions' => 'Abonnere på alle opdateringer',
-        'add'              => [
+        'subscribers'          => 'Subscribers',
+        'description'          => 'Abonnenter vil modtage notifikationer når hændelser oprettes eller komponenter opdateres.',
+        'description_disabled' => 'For at bruge denne funktion skal du tillader folk at tilmelde sig notifikationer.',
+        'verified'             => 'Bekræftet',
+        'not_verified'         => 'Ej bekræftet',
+        'subscriber'           => ':email, abonnerede :date',
+        'no_subscriptions'     => 'Abonnere på alle opdateringer',
+        'global'               => 'Globalt tilmeldt',
+        'add'                  => [
             'title'   => 'Tilføj abonnent',
             'success' => 'Subscriber added.',
             'failure' => 'Noget gik galt under forsøget på at tilføje en abonnent. Prøv venligst igen.',

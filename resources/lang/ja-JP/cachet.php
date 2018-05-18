@@ -14,7 +14,7 @@ return [
     'components' => [
         'last_updated' => '最終更新 :timestamp',
         'status'       => [
-            0 => 'Unknown',
+            0 => '不明',
             1 => '稼働中',
             2 => 'パフォーマンスに関する問題あり',
             3 => '一部停止中',
@@ -33,6 +33,7 @@ return [
         'scheduled'    => '計画メンテナンス',
         'scheduled_at' => ', 予定日時 :timestamp',
         'posted'       => '投稿日時 :timestamp',
+        'posted_at'    => '掲載日時 :timestamp',
         'status'       => [
             1 => '調査中',
             2 => '特定済み',
@@ -46,15 +47,15 @@ return [
         'status' => [
             0 => 'Upcoming',
             1 => 'In Progress',
-            2 => 'Complete',
+            2 => '完了',
         ],
     ],
 
     // Service Status
     'service' => [
-        'good'  => '[0,1] System operational|[2,Inf] All systems are operational',
-        'bad'   => '[0,1] The system is experiencing issues|[2,Inf] Some systems are experiencing issues',
-        'major' => '[0,1] The system is experiencing major issues|[2,Inf] Some systems are experiencing major issues',
+        'good'  => '[0,1]System operational|[2,*]All systems are operational',
+        'bad'   => '一部のシステムに問題が発生しています',
+        'major' => 'システムに深刻な問題が発生しています',
     ],
 
     'api' => [
@@ -75,11 +76,12 @@ return [
     // Subscriber
     'subscriber' => [
         'subscribe'   => '最新のアップデート情報を購読する',
-        'unsubscribe' => 'Unsubscribe at :link',
+        'unsubscribe' => '登録解除はこちら :link',
         'button'      => '購読',
         'manage'      => [
             'no_subscriptions' => 'You\'re currently subscribed to all updates.',
             'my_subscriptions' => 'You\'re currently subscribed to the following updates.',
+            'manage_at_link'   => 'Manage your subscriptions at :link',
         ],
         'email' => [
             'subscribe'          => 'メールによるアップデート情報の購読',
@@ -116,9 +118,18 @@ return [
         ],
     ],
 
+    // Meta descriptions
+    'meta' => [
+        'description' => [
+            'incident'  => 'Details and updates about the :name incident that occurred on :date',
+            'schedule'  => 'Details about the scheduled maintenance period :name starting :startDate',
+            'subscribe' => 'Subscribe to :app in order to receive updates of incidents and scheduled maintenance periods',
+            'overview'  => 'Stay up to date with the latest service updates from :app.',
+        ],
+    ],
+
     // Other
     'home'            => 'Home',
-    'description'     => 'Stay up to date with the latest service updates from :app.',
     'powered_by'      => 'Powered by <a href="https://cachethq.io" class="links">Cachet</a>.',
     'timezone'        => 'Times are shown in :timezone.',
     'about_this_site' => 'このサイトについて',
