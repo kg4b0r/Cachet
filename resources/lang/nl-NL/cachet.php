@@ -23,6 +23,8 @@ return [
         'group' => [
             'other' => 'Andere componenten',
         ],
+        'select_all'   => 'Select All',
+        'deselect_all' => 'Deselect All',
     ],
 
     // Incidents
@@ -75,14 +77,17 @@ return [
 
     // Subscriber
     'subscriber' => [
-        'subscribe'           => 'Abonneer voor de meest recente updates',
+        'subscribe'           => 'Subscribe to status changes and incident updates',
         'unsubscribe'         => 'Unsubscribe',
         'button'              => 'Abonneren',
         'manage_subscription' => 'Manage subscription',
         'manage'              => [
-            'no_subscriptions' => 'Je bent momenteel geabonneerd op alle updates.',
-            'my_subscriptions' => 'Je bent momenteel geabonneerd op de volgende updates.',
-            'manage_at_link'   => 'Beheer uw abonnementen op: link',
+            'notifications'       => 'Notificaties',
+            'notifications_for'   => 'Manage notifications for',
+            'no_subscriptions'    => 'Je bent momenteel geabonneerd op alle updates.',
+            'update_subscription' => 'Update Subscription',
+            'my_subscriptions'    => 'Je bent momenteel geabonneerd op de volgende updates.',
+            'manage_at_link'      => 'Beheer uw abonnementen op: link',
         ],
         'email' => [
             'subscribe'          => 'Abonneren op e-mail updates.',

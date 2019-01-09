@@ -140,7 +140,7 @@ class InstallCommand extends Command
 
         $config['DB_DRIVER'] = $this->choice('Which database driver do you want to use?', [
             'mysql'      => 'MySQL',
-            'postgresql' => 'PostgreSQL',
+            'pgsql'      => 'PostgreSQL',
             'sqlite'     => 'SQLite',
         ], $config['DB_DRIVER']);
 
@@ -148,6 +148,9 @@ class InstallCommand extends Command
             $config['DB_DATABASE'] = $this->ask('Please provide the full path to your SQLite file.', $config['DB_DATABASE']);
         } else {
             $config['DB_HOST'] = $this->ask("What is the host of your {$config['DB_DRIVER']} database?", $config['DB_HOST']);
+            if ($config['DB_HOST'] === 'localhost' && $config['DB_DRIVER'] === 'mysql') {
+                $this->warn("Using 'localhost' will result in the usage of a local unix socket. Use 127.0.0.1 if you want to connect over TCP");
+            }
 
             $config['DB_DATABASE'] = $this->ask('What is the name of the database that Cachet should use?', $config['DB_DATABASE']);
 
@@ -155,6 +158,7 @@ class InstallCommand extends Command
 
             $config['DB_PASSWORD'] = $this->secret('What password should we connect with?', $config['DB_PASSWORD']);
 
+            $config['DB_PORT'] = $config['DB_DRIVER'] === 'mysql' ? 3306 : 5432;
             if ($this->confirm('Is your database listening on a non-standard port number?')) {
                 $config['DB_PORT'] = $this->anticipate('What port number is your database using?', [3306, 5432], $config['DB_PORT']);
             }
@@ -388,11 +392,12 @@ class InstallCommand extends Command
             $envKey = strtoupper($key);
             $envValue = env($envKey) ?: 'null';
 
-            file_put_contents($path, str_replace(
-                "{$envKey}={$envValue}",
-                "{$envKey}={$value}",
-                file_get_contents($path)
-            ));
+            $envFileContents = file_get_contents($path);
+            $envFileContents = str_replace("{$envKey}={$envValue}", "{$envKey}={$value}", $envFileContents, $count);
+            if ($count < 1 && $envValue === 'null') {
+                $envFileContents = str_replace("{$envKey}=", "{$envKey}={$value}", $envFileContents);
+            }
+            file_put_contents($path, $envFileContents);
         } catch (InvalidPathException $e) {
             throw $e;
         }
